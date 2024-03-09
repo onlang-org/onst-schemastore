@@ -15,7 +15,9 @@
 
 > Built for [ONLang](https://github.com/onlang-org/ONLang)
 
-A utility library bundled with CLI for categorizing SchemaStore catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [fastest-levenshtein](https://www.npmjs.com/package/fastest-levenshtein) package.
+A utility library bundled with superfast CLI for categorizing [SchemaStore](https://schemastore.org/) catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [fastest-levenshtein](https://www.npmjs.com/package/fastest-levenshtein) package. 
+
+> The objective is to provide schema from many systems on the fly for [ONLang](https://www.npmjs.com/package/on-lang) and [osnt](https://www.npmjs.com/package/@onlang-org/onst)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -56,9 +58,31 @@ async function exampleUsage() {
 exampleUsage();
 ```
 
+### Search Schema
+```javascript
+
+const filteredEntities = await findSchema(input, categorizedSchemas)
+  return filteredEntities.map(schema => {
+      return {
+        value: schema,
+        description: `${schema} selected`
+      }
+  })
+
+```
+
 ### CLI usage
-```bash
-onst-ss
+```
+> onst-ss
+
+> ? Which entity would you want to download? AWS
+
+> AWS has 4 schemata.
+  - AWS CDK cdk.json - https://json.schemastore.org/cdk.json
+  - AWS CloudFormation - https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json
+  - AWS CloudFormation Serverless Application Model (SAM) - https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json
+  - AWS SAM CLI Samconfig - https://raw.githubusercontent.com/aws/aws-sam-cli/master/schema/samcli.json
+
 ```
 
 ## License

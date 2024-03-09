@@ -18,8 +18,8 @@ async function fetchSchemaFromSchemaStore() {
     const answer = await autocomplete({
         message: 'Which entity would you want to download?',
         source: async (input) => {
-            const filteredCountries = await findSchema(input, categorizedSchemas)
-            return filteredCountries.map(schema => {
+            const filteredEntities = await findSchema(input, categorizedSchemas)
+            return filteredEntities.map(schema => {
                 return {
                     value: schema,
                     description: `${schema} selected`
