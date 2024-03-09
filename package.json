@@ -1,0 +1,42 @@
+{
+  "name": "@onlang-org/onst-schemastore",
+  "version": "1.0.0",
+  "description": "Standalone package designed as helper for on-lang. Fetches catalog from SchemStore (www.schemastore.org) and categorises it into different entities based on similarity.",
+  "main": "main.js",
+  "bin": {
+    "onst-ss": "main.js"
+  },
+  "scripts": {
+    "pack": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz"
+  },
+  "keywords": [
+    "onlang",
+    "onlang-schema",
+    "json",
+    "onl",
+    "lemmatization",
+    "schemastore",
+    "natural",
+    "string-similarity",
+    "schema",
+    "cli",
+    "onst-schemastore",
+    "onst"
+  ],
+  "author": "ONLang.org <https://github.com/onlang-org> (rajatasusual <https://github.com/rajatasusual>)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onlang-org/onst-schemastore.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "inquirer-autocomplete-standalone": "^0.8.1",
+    "natural": "^6.10.5",
+    "string-similarity": "^4.0.4"
+  },
+  "module": "main.js",
+  "bugs": {
+    "url": "https://github.com/onlang-org/onst-schemastore/issues"
+  },
+  "homepage": "https://github.com/onlang-org/onst-schemastore#readme"
+}
