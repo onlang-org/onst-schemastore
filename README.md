@@ -7,6 +7,7 @@
 # @onlang-org/onst-schemastore extension for [onst](https://github.com/onlang-org/onst)
 
 [![CodeQL](https://github.com/onlang-org/onst-schemastore/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/onlang-org/onst-schemastore/actions/workflows/github-code-scanning/codeql)
+[![Deployment](https://github.com/onlang-org/onst-schemastore/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/onlang-org/onst-schemastore/actions/workflows/npm-publish.yml)
 [![npm version](https://img.shields.io/npm/v/@onlang-org/onst-schemastore.svg)](https://www.npmjs.com/package/@onlang-org/onst-schemastore)
 [![npm downloads](https://img.shields.io/npm/dm/@onlang-org/onst-schemastore.svg)](https://www.npmjs.com/package/@onlang-org/onst-schemastore)
 [![license](https://img.shields.io/github/license/onlang-org/onst-schemastore.svg)](https://github.com/onlang-org/onst-schemastore/blob/main/LICENSE.md)
