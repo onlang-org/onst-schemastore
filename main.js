@@ -1,9 +1,9 @@
 const natural = require('natural');
-const stringSimilarity = require('string-similarity');
-
 // Initialize the natural library
 const tokenizer = new natural.WordTokenizer();
 const stemmer = natural.PorterStemmer;
+
+const {closest} = require('fastest-levenshtein')
 
 /**
  * Retrieves the catalog from the schemastore.org and returns an array of schemas.
@@ -50,16 +50,10 @@ function getGroups(name) {
 
     // Use fuzzy matching to find the best-matching group for each word
     const bestMatches = words.map(word =>
-        stringSimilarity.findBestMatch(word, words).bestMatch
+        closest(word, words)
     );
 
-    // Filter out matches below a certain similarity threshold (e.g., 0.5)
-    const threshold = 0.5;
-    const matchedGroups = bestMatches
-        .filter(match => match.rating >= threshold)
-        .map(match => match.target);
-
-    return Array.from(new Set(matchedGroups)); // Remove duplicates
+    return Array.from(new Set(bestMatches)); // Remove duplicates
 }
 
 /**
@@ -72,8 +66,8 @@ async function categorizeSchemas() {
     const catalog = await getCatalog();
     const categorizedSchemas = [];
 
-    catalog.forEach(schema => {
-        const groups = getGroups(schema.name);
+    catalog.forEach(async schema => {
+        const groups = await getGroups(schema.name);
 
         groups.forEach(group => {
             let category = categorizedSchemas.find(cat => cat.name === group);

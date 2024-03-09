@@ -12,9 +12,9 @@
 [![license](https://img.shields.io/github/license/onlang-org/onst-schemastore.svg)](https://github.com/onlang-org/onst-schemastore/blob/main/LICENSE.md)
 [![forks](https://img.shields.io/github/forks/onlang-org/onst-schemastore.svg)](https://github.com/onlang-org/onst-schemastore/network)
 
-> Built for ONLang. [onst](https://github.com/onlang-org/ONLang)
+> Built for [ONLang](https://github.com/onlang-org/ONLang)
 
-A utility library bundled with CLI for categorizing SchemaStore catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [string-similarity](https://www.npmjs.com/package/string-similarity) package and [natural](https://www.npmjs.com/package/natural) package.
+A utility library bundled with CLI for categorizing SchemaStore catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [fastest-levenshtein](https://www.npmjs.com/package/fastest-levenshtein) package and [natural](https://www.npmjs.com/package/natural) package.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -27,7 +27,7 @@ A utility library bundled with CLI for categorizing SchemaStore catalog into ent
 ## Installation
 
 ```bash
-npm install @onlang-org/onst-schemastore
+npm install -g @onlang-org/onst-schemastore
 ```
 
 ## Usage
