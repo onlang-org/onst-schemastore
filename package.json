@@ -1,6 +1,6 @@
 {
   "name": "@onlang-org/onst-schemastore",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Standalone package designed as helper for on-lang. Fetches catalog from SchemStore (www.schemastore.org) and categorises it into different entities based on similarity.",
   "main": "main.js",
   "bin": {

@@ -48,11 +48,11 @@ async function categorizeSchemas() {
                 let category = categorizedSchemas.find(cat => cat.name === group);
 
                 if (!category) {
-                    category = { name: group, schema: [] };
+                    category = { name: group, schemas: [] };
                     categorizedSchemas.push(category);
                 }
 
-                category.schema.push({ name: schema.name, url: schema.url });
+                category.schemas.push({ name: schema.name, url: schema.url });
             });
         })
     );
@@ -136,7 +136,7 @@ async function fetchSchemaFromSchemaStore() {
     const categorizedSchemas = await categorizeSchemas();
 
     const answer = await autocomplete({
-        message: 'Which entity would you want to download?',
+        message: 'Which group would you want to download?',
         source: async (input) => {
             const filteredEntities = await findSchema(input, categorizedSchemas)
             return filteredEntities.map(schema => {
@@ -150,12 +150,9 @@ async function fetchSchemaFromSchemaStore() {
 
     const result = categorizedSchemas.find(schema => schema.name === answer);
 
-    console.log(`${answer} has ${result.schema.length} ${result.schema.length === 1 ? 'schema' : 'schemata'}.`);
+    console.log(`${answer} has ${result.schemas.length} ${result.schemas.length === 1 ? 'schema' : 'schemata'}.`);
 
-    result.schema.forEach(schema => {
-        console.log(`- ${schema.name} - ${schema.url}`);
-    })
-
+    return result;
 }
 
 module.exports = {
