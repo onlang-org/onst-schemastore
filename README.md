@@ -14,7 +14,7 @@
 
 > Built for [ONLang](https://github.com/onlang-org/ONLang)
 
-A utility library bundled with CLI for categorizing SchemaStore catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [fastest-levenshtein](https://www.npmjs.com/package/fastest-levenshtein) package and [natural](https://www.npmjs.com/package/natural) package.
+A utility library bundled with CLI for categorizing SchemaStore catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [fastest-levenshtein](https://www.npmjs.com/package/fastest-levenshtein) package.
 
 ## Table of Contents
 - [Installation](#installation)

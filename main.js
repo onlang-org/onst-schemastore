@@ -1,9 +1,4 @@
-const natural = require('natural');
-// Initialize the natural library
-const tokenizer = new natural.WordTokenizer();
-const stemmer = natural.PorterStemmer;
-
-const {closest} = require('fastest-levenshtein')
+const { distance } = require('fastest-levenshtein');
 
 /**
  * Retrieves the catalog from the schemastore.org and returns an array of schemas.
@@ -37,53 +32,98 @@ async function getFileContent(download_url) {
 }
 
 /**
- * Tokenizes the input name, performs stemming and filtering, uses fuzzy matching to find best-matching group for each word, and filters out matches below a certain similarity threshold.
- *
- * @param {string} name - The input name to process
- * @return {Array} An array of matched groups with duplicates removed
- */
-function getGroups(name) {
-    const nameWords = tokenizer.tokenize(name.toLowerCase()).map(word => stemmer.stem(word)).filter(word => word.length > 1);
-
-    // Combine and filter out duplicates
-    const words = Array.from(new Set([...nameWords]));
-
-    // Use fuzzy matching to find the best-matching group for each word
-    const bestMatches = words.map(word =>
-        closest(word, words)
-    );
-
-    return Array.from(new Set(bestMatches)); // Remove duplicates
-}
-
-/**
  * Asynchronously categorizes schemas based on groups.
  *
  * @return {Array} The categorized schemas sorted by name.
  */
 async function categorizeSchemas() {
-
     const catalog = await getCatalog();
     const categorizedSchemas = [];
 
-    catalog.forEach(async schema => {
-        const groups = await getGroups(schema.name);
+    await Promise.all(
+        catalog.map(async schema => {
+            const groups = new Set(tokenize(schema.name).concat(tokenize(schema.description)));
 
-        groups.forEach(group => {
-            let category = categorizedSchemas.find(cat => cat.name === group);
+            groups.forEach(group => {
+                let category = categorizedSchemas.find(cat => cat.name === group);
 
-            if (!category) {
-                category = { name: group, schema: [] };
-                categorizedSchemas.push(category);
-            }
+                if (!category) {
+                    category = { name: group, schema: [] };
+                    categorizedSchemas.push(category);
+                }
 
-            category.schema.push({ name: schema.name, url: schema.url });
-        });
-    });
+                category.schema.push({ name: schema.name, url: schema.url });
+            });
+        })
+    );
 
     return categorizedSchemas.sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/**
+ * Tokenizes the input string and returns an array of tokens.
+ *
+ * @param {string} input - The input string to tokenize
+ * @return {Array} An array of tokens
+ */
+function tokenize(input) {
+    return input.split(/\W+/).filter(Boolean);
+}
+
+/**
+ * Finds the closest matches for an input among the existing categories.
+ *
+ * @param {string} input - The input to find matches for
+ * @param {Array} categories - The existing categories
+ * @return {Array} The closest matches
+ */
+function findClosestMatches(input, categories) {
+    const inputTokens = tokenize(input);
+
+    // Find the closest matches using Levenshtein distance
+    const closestMatches = categories.map(category => {
+        const categoryTokens = tokenize(category);
+
+        // Calculate the total distance between inputTokens and categoryTokens
+        const dist = inputTokens.reduce((totalDistance, inputToken) => {
+            const closestToken = categoryTokens.reduce((closest, categoryToken) => {
+                const currentDistance = distance(inputToken.toLowerCase(), categoryToken.toLowerCase());
+                return currentDistance < closest.distance ? { distance: currentDistance, token: categoryToken } : closest;
+            }, { distance: Infinity, token: null });
+
+            return totalDistance + closestToken.distance;
+        }, 0);
+
+        return { category, distance: dist };
+    });
+
+    // Sort by distance and return the category names
+    return closestMatches
+        .filter(match => match.distance <= input.length)
+        .sort((a, b) => a.distance - b.distance)
+        .map(match => match.category);
+}
+
+/**
+ * Finds schemata based on input using inquirer-autocomplete.
+ *
+ * @param {string} input - The input to search schemata for.
+ * @param {Array} categorizedSchemas - The array of categorized schemata.
+ * @return {Array} The array of filtered schemata.
+ */
+function findSchema(input, categorizedSchemas) {
+    if (!input) {
+        return categorizedSchemas.map(schema => schema.name);
+    }
+
+    const allCategories = categorizedSchemas.map(schema => schema.name);
+    const closestMatches = findClosestMatches(input, allCategories);
+
+    return closestMatches;
+}
+
+
 module.exports = {
-    categorizeSchemas
+    categorizeSchemas,
+    findSchema
 }

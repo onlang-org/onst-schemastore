@@ -1,25 +1,6 @@
 #!/usr/bin/env node
 
-const { categorizeSchemas } = require('./main');
-
-/**
- * Finds schemata based on input using inquirer-autocomplete.
- *
- * @param {string} input - The input to search schemata for.
- * @param {Array} categorizedSchemas - The array of categorized schemata.
- * @return {Array} The array of filtered schemata.
- */
-function findSchema(input, categorizedSchemas) {
-    if (!input) {
-        return categorizedSchemas.map(schema => schema.name);
-    }
-
-    const filteredSchemata = categorizedSchemas
-        .filter(schema => schema.name.toLowerCase().includes(input.toLowerCase()))
-        .map(schema => schema.name);
-
-    return filteredSchemata
-}
+const { categorizeSchemas, findSchema } = require('./main');
 
 /**
  * Fetches the schema from the schema store using autocomplete to select an entity.
