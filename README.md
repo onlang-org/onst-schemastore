@@ -4,7 +4,9 @@
 
 <img src="https://raw.githubusercontent.com/rajatasusual/rajatasusual/master/onlang_shorthand.png" alt="onlang_shorthand" height="100">
 
-# @onlang-org/onst-schemastore extension for [onst](https://github.com/onlang-org/onst)
+# onst-schemastore
+
+Fetch schemata from [SchemaStore](https://schemastore.org/) catalog interactively. The package fetches and categorises the catalog into searchable topics that can be fetched in groups. (eg. All AWS schemata can be downloaded from groups AWS or Amazon). The package can be used in typescript and JS projects as a module or used via standalone CLI command onst-ss. 
 
 [![CodeQL](https://github.com/onlang-org/onst-schemastore/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/onlang-org/onst-schemastore/actions/workflows/github-code-scanning/codeql)
 [![Deployment](https://github.com/onlang-org/onst-schemastore/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/onlang-org/onst-schemastore/actions/workflows/npm-publish.yml)
@@ -17,7 +19,7 @@
 
 A utility library bundled with superfast CLI for categorizing [SchemaStore](https://schemastore.org/) catalog into entities and list them. The catalog is broken into different entities based on similarity using [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Spelling Distance](https://en.wikipedia.org/wiki/Spelling_distance). This is achieved by using the [fastest-levenshtein](https://www.npmjs.com/package/fastest-levenshtein) package. 
 
-> The objective is to provide schema from many systems on the fly for [ONLang](https://www.npmjs.com/package/on-lang) and [osnt](https://www.npmjs.com/package/@onlang-org/onst)
+> The objective is to provide schema from many systems on the fly.
 
 ## Table of Contents
 - [Installation](#installation)
