@@ -9,7 +9,6 @@
 Fetch schemata from [SchemaStore](https://schemastore.org/) catalog interactively. The package fetches and categorises the catalog into searchable topics that can be fetched in groups. (eg. All AWS schemata can be downloaded from groups AWS or Amazon). The package can be used in typescript and JS projects as a module or used via standalone CLI command onst-ss. 
 
 [![CodeQL](https://github.com/onlang-org/onst-schemastore/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/onlang-org/onst-schemastore/actions/workflows/github-code-scanning/codeql)
-[![Deployment](https://github.com/onlang-org/onst-schemastore/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/onlang-org/onst-schemastore/actions/workflows/npm-publish.yml)
 [![npm version](https://img.shields.io/npm/v/@onlang-org/onst-schemastore.svg)](https://www.npmjs.com/package/@onlang-org/onst-schemastore)
 [![npm downloads](https://img.shields.io/npm/dm/@onlang-org/onst-schemastore.svg)](https://www.npmjs.com/package/@onlang-org/onst-schemastore)
 [![license](https://img.shields.io/github/license/onlang-org/onst-schemastore.svg)](https://github.com/onlang-org/onst-schemastore/blob/main/LICENSE.md)
